@@ -39,14 +39,14 @@ class MyHomePage extends StatelessWidget {
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         child: BlocProvider(
-          create: (context) => CounterBloc(),
-          child: BlocBuilder<CounterBloc, int>(
+          create: (context) => CounterCubit(),
+          child: BlocBuilder<CounterCubit, StateClass>(
             builder: (context, state) {
               return Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Text(
-                    "$state",
+                    "${state.value}",
                     style: const TextStyle(
                       fontSize: 12.0,
                     ),
@@ -59,9 +59,7 @@ class MyHomePage extends StatelessWidget {
                     children: [
                       ElevatedButton.icon(
                         onPressed: () {
-                          context.read<CounterBloc>().add(
-                                CounterDecrementEvent(),
-                              );
+                          context.read<CounterCubit>().decrement();
                         },
                         icon: const Icon(
                           Icons.remove,
@@ -79,9 +77,7 @@ class MyHomePage extends StatelessWidget {
                       ),
                       ElevatedButton.icon(
                         onPressed: () {
-                          context.read<CounterBloc>().add(
-                                CounterIncrementEvent(),
-                              );
+                          context.read<CounterCubit>().increment();
                         },
                         icon: const Icon(
                           Icons.add,
