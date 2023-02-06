@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_bloc/bloc/product_bloc.dart';
-import 'package:flutter_application_bloc/screen/produts.dart';
+import 'package:flutter_application_bloc/auth/bloc/auth_bloc.dart';
+import 'package:flutter_application_bloc/screen/login_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() {
@@ -13,13 +13,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => ProductBloc()..add(OnProductEventCalled()),
+      create: (context) => AuthBloc(),
       child: MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: const ProductOverView(),
+        home: const LoginView(),
       ),
     );
   }
